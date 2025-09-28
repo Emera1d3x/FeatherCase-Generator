@@ -1,7 +1,8 @@
 #include <iostream>
 #include <limits>
 #include <string>
-#include "generators/ArrayCaseGenerator.h"
+#include "generators/NumbersCaseGenerator.h"
+#include "generators/StringCaseGenerator.h"
 #include "generators/GraphCaseGenerator.h"
 
 int main() {
@@ -27,8 +28,8 @@ int main() {
     bool validName = true;
     for (char c : name) {if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9'))) {validName = false; break;}}
     if (!validName) { std::cout << "Invalid Input. (a-z, A-Z, 0-9)" << std::endl;}
-    if (name.length() >= 25) {std::cout << "Invalid Input. (< 25 chars)" << std::endl;}
-    else {break;}
+    else if (name.length() >= 25) {std::cout << "Invalid Input. (< 25 chars)" << std::endl;}
+    else {std::cout << name<< std::endl; break;}
   }
 
   // File Extension Input
@@ -39,7 +40,8 @@ int main() {
     std::cout << "1 - .txt" << std::endl;
     std::cout << "Your choice: ";
     if (std::cin >> extension) {
-      if (extension == 0 || extension == 1) {break;}
+      if (extension == 0){std::cout << ".in" << std::endl; break;
+      } else if (extension == 1){std::cout << ".txt" << std::endl; break;}
       else {std::cout << "Invalid Input" << std::endl;}
     } else {
       std::cout << "Invalid Input" << std::endl;
@@ -51,13 +53,15 @@ int main() {
   // Type Input
   while (true) {
     std::cout << "==============================" << std::endl;
-    std::cout << "What type of test case would you like to create? Input # corresponding to choice." << std::endl;
-    std::cout << "0 - Array" << std::endl;
-    std::cout << "1 - Graph" << std::endl;
+    std::cout << "What type of test cases would you like to create? Input # corresponding to choice." << std::endl;
+    std::cout << "0 - Numbers" << std::endl;
+    std::cout << "1 - String" << std::endl;
+    std::cout << "2 - Graph" << std::endl;
     std::cout << "Your choice: ";
     if (std::cin >> type) {
-      if (type == 0) {generateArrayCase();break;}
-      else if (type == 1) {generateGraphCase();break;}
+      if (type == 0) {generateNumbersCase();break;}
+      else if (type == 1) {generateStringCase();break;}
+      else if (type == 2) {generateGraphCase();break;}
       else {std::cout << "Invalid Input" << std::endl;}
     } else {
       std::cout << "Invalid Input" << std::endl;
@@ -76,7 +80,7 @@ int main() {
 
 Start CMD:
 
-g++ main.cpp generators/ArrayCaseGenerator.cpp generators/GraphCaseGenerator.cpp -o FeatherCaseGenerator.exe
+g++ main.cpp generators/NumbersCaseGenerator.cpp generators/StringCaseGenerator.cpp generators/GraphCaseGenerator.cpp -o FeatherCaseGenerator.exe
 ./FeatherCaseGenerator.exe
 
 */
