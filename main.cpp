@@ -59,9 +59,9 @@ int main() {
     std::cout << "2 - Graph" << std::endl;
     std::cout << "Your choice: ";
     if (std::cin >> type) {
-      if (type == 0) {generateNumbersCase();break;}
-      else if (type == 1) {generateStringCase();break;}
-      else if (type == 2) {generateGraphCase();break;}
+      if (type == 0) {generateNumbersCase(name, extension);break;}
+      else if (type == 1) {generateStringCase(name, extension);break;}
+      else if (type == 2) {generateGraphCase(name, extension);break;}
       else {std::cout << "Invalid Input" << std::endl;}
     } else {
       std::cout << "Invalid Input" << std::endl;
