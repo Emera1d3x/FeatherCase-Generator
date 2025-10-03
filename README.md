@@ -1,5 +1,7 @@
 # 🪶 FeatherCase Generator
 
+
+<img src="https://github.com/Emera1d3x/FeatherCase-Generator/blob/main/icon.png" width="100"> <br>
 **FeatherCase Generator** is a lightweight, no-fuss C++ test case generator for competitive programming & unit testing.
 Generate **numbers, strings, and graphs** with just a few clicks — and get **ready-to-use input files** instantly.
 
