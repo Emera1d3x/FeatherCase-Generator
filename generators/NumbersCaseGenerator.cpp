@@ -5,10 +5,14 @@
 #include <iostream>
 #include <limits>
 #include <string>
+#include <random>
+#include <algorithm>
+#include <vector>
 
 void generateNumbersCase(std::string name, int extension) {
 
 	int N;
+	int variation;
 	bool displayNFirst;
 	std::string separatorVal;
 	int minValue, maxValue;
@@ -20,6 +24,8 @@ void generateNumbersCase(std::string name, int extension) {
 	// Selected Confirmation
 	std::cout << "==============================" << std::endl;
 	std::cout << "Numbers Selected" << std::endl;
+
+	// Reference N
 	while (true) {
     std::cout << "==============================" << std::endl;
     std::cout << "How long should the list of numbers be? (N?)" << std::endl;
@@ -27,6 +33,22 @@ void generateNumbersCase(std::string name, int extension) {
     std::cout << "Your input: ";
     if (std::cin >> N) {
       if (N > 0 && N < 1000000000) {std::cout << N << std::endl; break;}
+      else {std::cout << "Invalid Input" << std::endl;}
+    } else {
+      std::cout << "Invalid Input" << std::endl;
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
+  }
+
+	// Reference N
+	while (true) {
+    std::cout << "==============================" << std::endl;
+    std::cout << "Instead of just using N for all test cases, you may have a random +- variation. Input # of size of variation, input 0 to have no variation." << std::endl;
+    std::cout << "Input a # from 0 to " << N << std::endl;
+    std::cout << "Your input: " << std::endl;
+    if (std::cin >> variation) {
+      if (variation >= 0 && variation < N) {std::cout << "# of elements will be > " << N-variation << " & < " << N+variation << std::endl; break;}
       else {std::cout << "Invalid Input" << std::endl;}
     } else {
       std::cout << "Invalid Input" << std::endl;
@@ -120,7 +142,7 @@ void generateNumbersCase(std::string name, int extension) {
 	// Summary
 	std::cout << "==============================" << std::endl;
 	std::cout << "Summary of Choices:" << std::endl;
-	std::cout << "N: " << N << std::endl;
+	std::cout << "Range of # of elements: " << N-variation << " to " << N+variation << std::endl;
 	std::cout << "Display N first: " << (displayNFirst ? "Yes" : "No") << std::endl;
 	std::cout << "Separator: '" << separatorVal << "'" << std::endl;
 	std::cout << "MIN: " << minValue << ", MAX: " << maxValue << std::endl;
@@ -151,17 +173,48 @@ void generateNumbersCase(std::string name, int extension) {
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	}
 
+	// Random
+	std::random_device rd;
+	std::mt19937 gen(rd());
+
 	// Actual Generator
 	for (int i = startNum; i < startNum+testCases; i++){
+
 		std::string fileName = fileNameHelper(name, extension, i);
 		std::ofstream CaseFile("./generated_cases/"+fileName);
 		if (!CaseFile) {std::cerr << "Error: Could not open file for writing!" << std::endl; return;}
 		else {std::cout << "Successfully wrote to " << "./generated_cases/" + fileName << std::endl;}
-		CaseFile << i << std::endl;
-		CaseFile << "Test" << std::endl;
+
+		std::uniform_int_distribution<int> distN(std::max(1, N - variation), N + variation);
+		int testcaseN = distN(gen); if (i == startNum+testCases-1) {testcaseN = N+variation;}
+		std::vector<int> numbers;
+
+		if (uniqueNums == 'y') {
+			if (maxValue - minValue + 1 < testcaseN) {
+				std::cerr << "Error: Range too small for unique numbers!" << std::endl;
+				return;
+			}
+			for (int val = minValue; val <= maxValue; val++) {
+				numbers.push_back(val);
+			} 
+			std::shuffle(numbers.begin(), numbers.end(), gen);
+			numbers.resize(testcaseN);
+		} else {
+			std::uniform_int_distribution<int> dist(minValue, maxValue);
+			for (int j = 0; j < testcaseN; j++) {
+				numbers.push_back(dist(gen));
+			}
+		}
+		if (order == 1) { std::sort(numbers.begin(), numbers.end());}
+		else if (order == 2) {std::sort(numbers.rbegin(), numbers.rend());}
+		if (displayNFirst) {CaseFile << testcaseN << "\n";}
+			
+		for (int j = 0; j < testcaseN; j++) {
+			CaseFile << numbers[j];
+			if (j != testcaseN - 1) {CaseFile << separatorVal;}
+		}
 		CaseFile.close();
 	}
 
-	std::cout << "END" << std::endl;
-
+	std::cout << "Test Cases Generated" << std::endl;
 }

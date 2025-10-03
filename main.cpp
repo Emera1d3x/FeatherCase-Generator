@@ -26,8 +26,8 @@ int main() {
     std::cout << "Enter a file name (<25 characters, no spaces): ";
     std::getline(std::cin, name);
     bool validName = true;
-    for (char c : name) {if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9'))) {validName = false; break;}}
-    if (!validName) { std::cout << "Invalid Input. (a-z, A-Z, 0-9)" << std::endl;}
+    for (char c : name) {if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9') || (c == '_'))) {validName = false; break;}}
+    if (!validName) { std::cout << "Invalid Input. Name may only include (a-z, A-Z, 0-9, _)" << std::endl;}
     else if (name.length() >= 25) {std::cout << "Invalid Input. (< 25 chars)" << std::endl;}
     else {std::cout << name<< std::endl; break;}
   }
@@ -84,7 +84,7 @@ g++ main.cpp generators/FileNameHelper.cpp generators/NumbersCaseGenerator.cpp g
 ./FeatherCaseGenerator.exe
 
 .\build.bat
-.\run.bat
+.\run.bat.\run.bat
 
 */
 
