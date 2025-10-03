@@ -1,2 +1,3 @@
 *.in linguist-detectable=false
 *.txt linguist-detectable=false
+*.cpp text tabwidth=2
