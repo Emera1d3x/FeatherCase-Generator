@@ -208,11 +208,11 @@ void generateNumbersCase(std::string name, int extension) {
 		if (order == 1) { std::sort(numbers.begin(), numbers.end());}
 		else if (order == 2) {std::sort(numbers.rbegin(), numbers.rend());}
 		if (displayNFirst) {CaseFile << testcaseN << "\n";}
-			
 		for (int j = 0; j < testcaseN; j++) {
 			CaseFile << numbers[j];
 			if (j != testcaseN - 1) {CaseFile << separatorVal;}
 		}
+		
 		CaseFile.close();
 	}
 
