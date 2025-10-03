@@ -4,10 +4,10 @@
 #include "generators/NumbersCaseGenerator.h"
 #include "generators/StringCaseGenerator.h"
 #include "generators/GraphCaseGenerator.h"
+#include "generators/FileNameHelper.h"
 
 int main() {
-  
-  // Vars: Input
+
   std::string name;
   int extension;
   int type;
@@ -80,7 +80,7 @@ int main() {
 
 Start CMD:
 
-g++ main.cpp generators/NumbersCaseGenerator.cpp generators/StringCaseGenerator.cpp generators/GraphCaseGenerator.cpp -o FeatherCaseGenerator.exe
+g++ main.cpp generators/FileNameHelper.cpp generators/NumbersCaseGenerator.cpp generators/StringCaseGenerator.cpp generators/GraphCaseGenerator.cpp -o FeatherCaseGenerator.exe
 ./FeatherCaseGenerator.exe
 
 */
