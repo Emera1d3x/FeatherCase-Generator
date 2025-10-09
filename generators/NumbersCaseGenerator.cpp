@@ -11,7 +11,6 @@
 
 void generateNumbersCase(std::string name, int extension)
 {
-
 	int N;
 	int variation;
 	bool displayNFirst;
