@@ -131,10 +131,8 @@ int main()
 
 Start CMD:
 
-g++ main.cpp generators/FileNameHelper.cpp generators/NumbersCaseGenerator.cpp generators/StringCaseGenerator.cpp generators/GraphCaseGenerator.cpp -o FeatherCaseGenerator.exe
-./FeatherCaseGenerator.exe
-
 .\build.bat
 .\run.bat
+.\run_solver.bat
 
 */
