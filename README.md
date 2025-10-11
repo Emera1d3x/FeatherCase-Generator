@@ -3,7 +3,7 @@
 
 <img src="https://github.com/Emera1d3x/FeatherCase-Generator/blob/main/icon.png" width="100"> <br>
 **FeatherCase Generator** is a lightweight, no-fuss C++ test case generator for competitive programming & unit testing.
-Generate **numbers, strings, and graphs** with just a few clicks — and get **ready-to-use input files** instantly.
+Generate **numbers, strings, and graphs** with just a few clicks — and get **ready-to-use input files** instantly. Edit and run solver to generate .out files.
 
 ---
 
@@ -11,7 +11,7 @@ Generate **numbers, strings, and graphs** with just a few clicks — and get **r
 
 * 🚀 **Fast & lightweight** — no setup headaches
 * 🧑‍💻 **Made for coders** — ideal for competitive programming & unit testing
-* 📂 **Auto output** — creates multiple input files in one run
+* 📂 **Auto output** — creates multiple input/output files in one run
 * 🔧 **Customizable** — full control over test case parameters
 
 ---
@@ -42,6 +42,11 @@ Generate **numbers, strings, and graphs** with just a few clicks — and get **r
    ```bat
    .\run.bat
    ```
+4. **Run Solver**:
+
+   ```bat
+   .\run_solver.bat
+   ```
 
 ---
 
@@ -51,4 +56,4 @@ Generate **numbers, strings, and graphs** with just a few clicks — and get **r
 
 ---
 
-💡 FeatherCase Generator makes testing easier, faster, and smarter — so you can focus on solving problems, not building inputs.
+💡 FeatherCase Generator makes testing easier, faster, and smarter — so you can focus on solving problems.
