@@ -42,8 +42,6 @@ int solver()
       }
       else
       {
-        int num = 0;
-        fin >> num;
         existing.pop();
       }
     }

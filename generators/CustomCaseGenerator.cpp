@@ -42,15 +42,14 @@ void generateCustomCase(std::string name, int extension)
     std::priority_queue<int> existing;
     for (int i = 0; i < queries; i++)
     {
-      int randomNumber = 0 + (rand() % (10 - 0 + 1));
-      if (randomNumber >= 0 && randomNumber <= 3 && existing.size() != 0)
+      int randomNumber = 0 + (rand() % (100 - 0 + 1));
+      if (randomNumber >= 0 && randomNumber <= 20 && existing.size() != 0)
       {
         CaseFile << "KING" << "\n";
       }
-      else if (randomNumber >= 7 && randomNumber <= 10 && existing.size() != 0)
+      else if (randomNumber >= 21 && randomNumber <= 35 && existing.size() != 0)
       {
-        int num = existing.top();
-        CaseFile << "DEPARTURE " << num << "\n";
+        CaseFile << "DEPARTURE" << "\n";
         existing.pop();
       }
       else
