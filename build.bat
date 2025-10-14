@@ -1,2 +1,2 @@
-g++ main.cpp generators/NumbersCaseGenerator.cpp generators/StringCaseGenerator.cpp generators/GraphCaseGenerator.cpp generators/FileNameHelper.cpp -o FeatherCaseGenerator.exe
+g++ main.cpp generators/NumbersCaseGenerator.cpp generators/StringCaseGenerator.cpp generators/GraphCaseGenerator.cpp generators/CustomCaseGenerator.cpp generators/FileNameHelper.cpp -o FeatherCaseGenerator.exe
 g++ solver.cpp -o Solver.exe

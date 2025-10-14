@@ -4,6 +4,7 @@
 #include "generators/NumbersCaseGenerator.h"
 #include "generators/StringCaseGenerator.h"
 #include "generators/GraphCaseGenerator.h"
+#include "generators/CustomCaseGenerator.h"
 #include "generators/FileNameHelper.h"
 
 int main()
@@ -92,6 +93,7 @@ int main()
     std::cout << "0 - Numbers" << std::endl;
     std::cout << "1 - String" << std::endl;
     std::cout << "2 - Graph" << std::endl;
+    std::cout << "3 - Custom" << std::endl;
     std::cout << "Your choice: ";
     if (std::cin >> type)
     {
@@ -108,6 +110,11 @@ int main()
       else if (type == 2)
       {
         generateGraphCase(name, extension);
+        break;
+      }
+      else if (type == 3)
+      {
+        generateCustomCase(name, extension);
         break;
       }
       else
