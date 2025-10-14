@@ -1,13 +1,20 @@
 #include <iostream>
 #include <fstream>
+#include <limits>
+#include <string>
+#include <random>
+#include <algorithm>
+#include <vector>
+#include <queue>
+#include <cstdlib>
 using namespace std;
 
 int solver()
 {
   cout << "Solver Built" << endl;
   int start = 1;
-  int end = 9;
-  string name = "num_sample";
+  int end = 10;
+  string name = "seniorlessonpq";
   for (int i = start; i <= end; i++)
   {
     string inFile = "generated_cases/" + name + "." + to_string(i) + ".in";
@@ -17,7 +24,30 @@ int solver()
     // Solution Here
     int N;
     fin >> N;
-    fout << N << endl;
+    priority_queue<int> existing;
+    for (int i = 0; i < N; i++)
+    {
+      string instruction;
+      fin >> instruction;
+      if (instruction == "KING")
+      {
+        int top = existing.top();
+        fout << top << endl;
+      }
+      else if (instruction == "ARRIVAL")
+      {
+        int num = 0;
+        fin >> num;
+        existing.push(num);
+      }
+      else
+      {
+        int num = 0;
+        fin >> num;
+        existing.pop();
+      }
+    }
+    //
     fin.close();
     fout.close();
   }
