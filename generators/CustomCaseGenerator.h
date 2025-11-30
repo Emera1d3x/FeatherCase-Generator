@@ -4,4 +4,6 @@
 
 void generateCustomCase(std::string name, int extension);
 
+int generateRandomNumber(int min, int max);
+
 #endif

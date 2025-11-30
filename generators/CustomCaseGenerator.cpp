@@ -9,6 +9,7 @@
 #include <algorithm>
 #include <vector>
 #include <queue>
+#include <unordered_set>
 #include <cstdlib>
 
 void generateCustomCase(std::string name, int extension)
@@ -16,9 +17,11 @@ void generateCustomCase(std::string name, int extension)
   std::cout << "==============================" << std::endl;
   std::cout << "Custom Selected" << std::endl;
   std::cout << "==============================" << std::endl;
-  int startNum = 1;
-  int endNum = 10;
+  int startNum = 21;
+  int endNum = 30;
   // Actual Generator
+  std::ios::sync_with_stdio(false);
+  std::cin.tie(nullptr);
   for (int i = startNum; i <= endNum; i++)
   {
     std::string fileName = fileNameHelper(name, extension, i);
@@ -33,34 +36,14 @@ void generateCustomCase(std::string name, int extension)
       std::cout << "Successfully wrote to " << "./generated_cases/" + fileName << std::endl;
     }
     // Actual Code
-    int queries = 1000 + (rand() % (100000 - 1000 + 1));
-    if (i == endNum)
-    {
-      queries = 100000;
-    }
-    CaseFile << queries << std::endl;
-    std::priority_queue<int> existing;
-    for (int i = 0; i < queries; i++)
-    {
-      int randomNumber = 0 + (rand() % (100 - 0 + 1));
-      if (randomNumber >= 0 && randomNumber <= 20 && existing.size() != 0)
-      {
-        CaseFile << "KING" << "\n";
-      }
-      else if (randomNumber >= 21 && randomNumber <= 35 && existing.size() != 0)
-      {
-        CaseFile << "DEPARTURE" << "\n";
-        existing.pop();
-      }
-      else
-      {
-        int num = 1 + (rand() % (200000 - 1 + 1));
-        existing.push(num);
-        CaseFile << "ARRIVAL " << num << "\n";
-      }
-    }
     CaseFile.close();
   }
 
   std::cout << "Test Cases Generated" << std::endl;
+}
+
+int generateRandomNumber(int min, int max) {
+  static std::mt19937_64 rng(std::random_device{}());
+  std::uniform_int_distribution<long long> dist(min, max);
+  return dist(rng);
 }
