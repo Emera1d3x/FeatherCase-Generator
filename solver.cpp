@@ -21,34 +21,52 @@ int solver()
   int end = 20;
   
   string name = "lcc25c2j4";
-  for (int i = start; i <= end; i++)
+  for (int numberIterator = start; numberIterator <= end; numberIterator++)
   {
-    string inFile = "generated_cases/" + name + "." + to_string(i) + ".in";
-    string outFile = "generated_cases/" + name + "." + to_string(i) + ".out";
+    string inFile = "generated_cases/" + name + "." + to_string(numberIterator) + ".in";
+    string outFile = "generated_cases/" + name + "." + to_string(numberIterator) + ".out";
     ifstream fin(inFile);
     ofstream fout(outFile);
     fin.tie(0);
 
-
     // Solution Here
-  int N, A, B, C;
-  fin >> N >> A >> B >> C;
-  bool ans = false;
-  if ((N*3) != (9*A + 3*B + 4*C)){
-  } else {
-    N -= (3*A);
-    N -= (2*C);
-    if (N < 0){
-    } else if ((2*C)%3 != 0){
-    } else {
-      ans = true;
-    }
-  }
-  if (ans){
-    fout << "YES" << endl;
-  } else {
-    fout << "NO" << endl;
-  }
+      int n, r; fin >> n >> r;
+      vector<int> nums(n);
+      vector<int> freqs;
+      if (r >= n){cout << 0 << endl;} else {
+        for (int i = 0; i < n; i++){fin >> nums[i];}
+        sort(nums.begin(), nums.end());
+        int minVal = nums[0];
+        vector<int> nums_filtered;
+        for (auto a : nums){
+          if (a != minVal){
+            nums_filtered.push_back(a);
+          }
+        }
+        if (nums_filtered.size() == 0){
+          fout << 0 << endl;
+        } else {
+          int cur = nums_filtered[0]; int freq = 0;
+          for (auto a : nums_filtered){
+            if (a == cur){
+              freq++;
+            } else {
+              freqs.push_back(freq);
+              cur = a; freq = 1;
+            }
+          }
+          freqs.push_back(freq);
+          sort(freqs.begin(), freqs.end(), greater<int>());
+          int total = nums_filtered.size();
+          for (int i = 0; i < r-1; i++){
+            total -= freqs[i];
+            if (total == 0){
+              break;
+            }
+          }
+          fout << total << endl;
+        }
+      }
     ///////
     fin.close();
     fout.close();
